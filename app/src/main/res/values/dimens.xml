@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ic_ball1_size">77dp</dimen>
+    <dimen name="ic_ball2_size">98dp</dimen>
+    <dimen name="ic_ball3_ball4_size">150dp</dimen>
+</resources>

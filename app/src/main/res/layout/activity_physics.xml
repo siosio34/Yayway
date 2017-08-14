@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:ignore="MissingPrefix"
+    >
+
+    <ImageView
+        android:id="@+id/physicsActiveLogoImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_active"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        />
+
+    <TextView
+        fontPath="fonts/Spoqa Han Sans Bold.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="주행완료"
+        android:textColor="#525252"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/physicsActiveLogoImageView"
+        app:layout_constraintBottom_toBottomOf="@+id/physicsActiveLogoImageView"
+        android:layout_marginStart="95dp"
+        />
+
+    <TextView
+        fontPath="fonts/CircularStd-Black.otf"
+        android:id="@+id/yayNumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6"
+        android:textColor="#fa7967"
+        android:textSize="38sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="68dp"
+        />
+
+    <TextView
+        fontPath="fonts/CircularStd-Black.otf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="yay points!"
+        android:textColor="#373737"
+        android:textSize="38sp"
+        app:layout_constraintLeft_toRightOf="@+id/yayNumTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="68dp"
+        />
+
+    <com.b05studio.yayway.PhysicsFlowLayout
+        android:id="@+id/physics_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:gravityX="0"
+        app:gravityY="9.8"
+        app:fling="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/physicsLayoutTimeView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_fixedRotation="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle2"
+            android:layout_width="@dimen/ic_ball2_size"
+            android:layout_height="@dimen/ic_ball2_size"
+            android:layout_gravity="center"
+            app:layout_shape="circle"
+            app:layout_bodyType="dynamic"
+            app:layout_fixedRotation="true"
+            android:src="@drawable/ic_ball2"
+            android:onClick="ic_ball2_click"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle0"
+            android:layout_width="@dimen/ic_ball1_size"
+            android:layout_height="@dimen/ic_ball1_size"
+            android:layout_gravity="center"
+            app:layout_shape="circle"
+            app:layout_bodyType="dynamic"
+            app:layout_fixedRotation="true"
+            android:src="@drawable/ic_ball1" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle4"
+            android:layout_width="@dimen/ic_ball3_ball4_size"
+            android:layout_height="@dimen/ic_ball3_ball4_size"
+            android:layout_gravity="center"
+            app:layout_shape="circle"
+            app:layout_bodyType="dynamic"
+            app:layout_fixedRotation="true"
+            android:src="@drawable/ic_ball3"
+            android:onClick="ic_ball3_click"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle5"
+            android:layout_width="@dimen/ic_ball3_ball4_size"
+            android:layout_height="@dimen/ic_ball3_ball4_size"
+            android:layout_gravity="center"
+            app:layout_shape="circle"
+            app:layout_bodyType="dynamic"
+            app:layout_fixedRotation="true"
+            android:src="@drawable/ic_ball4"
+            android:onClick="ic_ball4_click"
+            />
+
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle3"
+            android:layout_width="@dimen/ic_ball2_size"
+            android:layout_height="@dimen/ic_ball2_size"
+            android:layout_gravity="center"
+            app:layout_shape="circle"
+            app:layout_bodyType="dynamic"
+            app:layout_fixedRotation="true"
+            android:src="@drawable/ic_ball2"
+            android:onClick="ic_ball1_click"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle1"
+            android:layout_width="@dimen/ic_ball1_size"
+            android:layout_height="@dimen/ic_ball1_size"
+            android:layout_gravity="center"
+            app:layout_shape="circle"
+            app:layout_bodyType="dynamic"
+            app:layout_fixedRotation="true"
+            android:src="@drawable/ic_ball1" />
+
+    </com.b05studio.yayway.PhysicsFlowLayout>
+
+    <ImageView
+        android:id="@+id/exitDetailRecordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_exit"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/physicsLayoutTimeView"
+        android:layout_width="0dp"
+        android:layout_height="155dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="0dp"
+        android:src="@drawable/ic_after_riding_group"
+        android:scaleType="fitXY"
+        />
+
+</android.support.constraint.ConstraintLayout>
