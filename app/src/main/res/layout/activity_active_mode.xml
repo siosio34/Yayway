@@ -14,7 +14,7 @@
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:visibility="visible"
-        android:background="#000000"
+        android:background="@drawable/active_record_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

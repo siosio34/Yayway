@@ -22,22 +22,22 @@ public class ActiveModeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_active_mode);
 
         appBarLayout = (AppBarLayout) findViewById(R.id.activeModeTabbar);
-        constraintLayout = (ConstraintLayout) findViewById(R.id.activeModeTabLayout);
-        constraintLayout.bringToFront();
+       // constraintLayout = (ConstraintLayout) findViewById(R.id.activeModeTabLayout);
+       // constraintLayout.bringToFront();
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
 
                 if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
                 {
-                    constraintLayout.setVisibility(View.VISIBLE);
+                    //constraintLayout.setVisibility(View.VISIBLE);
 
                     Log.d("으으어어","응어어어##");
                     // TODO: 2017-08-15 작업하면댐오 ㅋㅋ
                 }
                 else
                 {
-                    constraintLayout.setVisibility(View.GONE);
+                   // constraintLayout.setVisibility(View.GONE);
                     Log.d("으으어어","응어어어1");
                 }
             }
