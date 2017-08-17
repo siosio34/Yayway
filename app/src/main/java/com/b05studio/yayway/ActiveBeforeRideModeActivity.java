@@ -15,6 +15,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ActiveBeforeRideModeActivity extends AppCompatActivity {
 
+
+    private int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,12 @@ public class ActiveBeforeRideModeActivity extends AppCompatActivity {
             vidioview.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    startActiveDuringRideActivity();
+                    mp.seekTo(0);
+                    mp.start();
+
+                    count++;
+                    if(count == 3)
+                        startActiveDuringRideActivity();
                 }
             });
             vidioview.start();

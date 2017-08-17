@@ -202,8 +202,7 @@ public class BluetoothSwitchService {
         bundle.putString(BluetoothConstants.DEVICE_NAME, device.getName());
         msg.setData(bundle);
         mHandler.sendMessage(msg);
-        // Update UI title
-        updateUserInterfaceTitle();
+
     }
 
     /**
@@ -484,18 +483,21 @@ public class BluetoothSwitchService {
 
         public void run() {
             Log.i(TAG, "BEGIN mHandConnectedThread");
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[2];
             int bytes;
+
 
             // Keep listening to the InputStream while connected
             while (mState == STATE_CONNECTED) {
                 try {
+
                     // Read from the InputStream
                     bytes = mmInStream.read(buffer);
 
                     // Send the obtained bytes to the UI Activity
                     mHandler.obtainMessage(BluetoothConstants.MESSAGE_READ, bytes, -1, buffer)
                             .sendToTarget();
+
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                     connectionLost();
@@ -528,10 +530,6 @@ public class BluetoothSwitchService {
                 Log.e(TAG, "close() of connect socket failed", e);
             }
         }
-    }
-
-    private void handControl() {
-
     }
 
 }

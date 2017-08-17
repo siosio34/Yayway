@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
     <application
         android:allowBackup="true"
@@ -17,7 +19,7 @@
         android:largeHeap="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
 
-        <activity android:name=".PhysicsLayout">
+        <activity android:name=".ActiveModeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,11 +27,11 @@
         </activity>
         PhysicsLayout
         <activity android:name=".ActiveDuringRideModeActivity" />
-        <activity android:name=".ActiveModeActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".SpeedModeActivity" />
         <activity android:name=".ActiveBeforeRideModeActivity" />
         <activity android:name=".SpeedRideModeActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".PhysicsLayout" />
         <activity android:name=".ActiveYayActivity"></activity>
     </application>
 
