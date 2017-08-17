@@ -10,14 +10,11 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.commit451.gitbal.Gimbal;
-import com.jawnnypoo.physicslayout.Physics;
-import com.jawnnypoo.physicslayout.PhysicsConfig;
-import com.jawnnypoo.physicslayout.PhysicsFrameLayout;
-import com.squareup.picasso.Picasso;
-import com.wefika.flowlayout.FlowLayout;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,6 +26,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 
 public class PhysicsLayout extends AppCompatActivity {
+
 
     @Bind(R.id.physics_layout)
     PhysicsFlowLayout physicsLayout;
@@ -73,7 +71,6 @@ public class PhysicsLayout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: 2017-08-14 위에서 아래로 내려가는
-
                 startActivity(new Intent(PhysicsLayout.this, ActiveModeActivity.class));
                 finish();
                 overridePendingTransition(0,R.anim.activity_change);
@@ -85,6 +82,11 @@ public class PhysicsLayout extends AppCompatActivity {
         circleImageView3 = (CircleImageView) findViewById(R.id.circle3);
         circleImageView4 = (CircleImageView) findViewById(R.id.circle4);
         circleImageView5 = (CircleImageView) findViewById(R.id.circle5);
+
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(Color.parseColor("#e5e5e5"));
     }
 
     @Override

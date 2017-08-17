@@ -2,10 +2,13 @@ package com.b05studio.yayway;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.VideoView;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -31,12 +34,18 @@ public class ActiveBeforeRideModeActivity extends AppCompatActivity {
         catch (Exception e) {
             startActiveDuringRideActivity();
         }
+
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(Color.parseColor("#213d53"));
     }
 
     private void startActiveDuringRideActivity() {
         if(isFinishing())
             return ;
 
+        overridePendingTransition(0,0);
         startActivity(new Intent(this,ActiveDuringRideModeActivity.class));
         overridePendingTransition(0,0);
         finish();
