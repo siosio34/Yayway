@@ -7,8 +7,21 @@
     android:fitsSystemWindows="true"
     android:background="#f8f8f8"
     tools:ignore="MissingPrefix"
-
     >
+
+    <Button
+        android:id="@+id/goPhylayoutHiddenButton"
+        android:background="#000000"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="11dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:onClick="ic_hidden_list_button"
+        />
 
     <Button
         android:layout_width="0dp"
@@ -46,87 +59,88 @@
         >
 
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/activeModeTabbar"
-        android:layout_width="match_parent"
-        android:layout_height="492dp"
-        android:background="#f8f8f8"
-        android:fitsSystemWindows="true"
-       >
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbarLayout01"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/activeModeTabbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="492dp"
+            android:background="#f8f8f8"
             android:fitsSystemWindows="true"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
-            app:scrimAnimationDuration="0"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            >
 
-            <ImageView
-                android:id="@+id/imageView01"
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarLayout01"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
+                android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                android:src="@drawable/back"
-                app:layout_collapseMode="parallax" />
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:scrimAnimationDuration="0"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="9dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="60dp"
-                android:src="@drawable/ic_main_logo"
-                />
+                <ImageView
+                    android:id="@+id/imageView01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:fitsSystemWindows="true"
+                    android:src="@drawable/back"
+                    app:layout_collapseMode="parallax" />
 
-            <TextView
-                fontPath="fonts/CircularStd-Black.otf"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textSize="45sp"
-                android:textColor="#fcfbfd"
-                android:text="make your"
-                android:gravity="center"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="129dp"
-                />
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="9dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="60dp"
+                    android:src="@drawable/ic_main_logo"
+                    />
 
-            <TextView
-                fontPath="fonts/Damion-Regular.ttf"
-                android:id="@+id/logoTextview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="171dp"
-                android:textSize="60sp"
-                android:textColor="#282828"
-                android:text="active"
-                />
+                <TextView
+                    fontPath="fonts/CircularStd-Black.otf"
+                    android:id="@+id/makeYourTextView"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="45sp"
+                    android:textColor="#fcfbfd"
+                    android:text="make your"
+                    android:gravity="center"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="129dp"
+                    />
 
-            <TextView
-                fontPath="fonts/CircularStd-Black.otf"
-                android:id="@+id/wayTextView"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textSize="45sp"
-                android:text="way"
-                android:layout_marginStart="158dp"
-                android:layout_marginTop="185dp"
-                android:textColor="#fcfbfd"
-                />
+                <TextView
+                    fontPath="fonts/Damion-Regular.ttf"
+                    android:id="@+id/logoTextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="171dp"
+                    android:textSize="60sp"
+                    android:textColor="#282828"
+                    android:text="active"
+                    />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="120dp">
+                <TextView
+                    fontPath="fonts/CircularStd-Black.otf"
+                    android:id="@+id/wayTextView"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="45sp"
+                    android:text="way"
+                    android:layout_marginStart="158dp"
+                    android:layout_marginTop="185dp"
+                    android:textColor="#fcfbfd"
+                    />
 
-            </android.support.v7.widget.Toolbar>
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp">
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+                </android.support.v7.widget.Toolbar>
 
-    </android.support.design.widget.AppBarLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
 
 
         <android.support.v4.widget.NestedScrollView
@@ -136,7 +150,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-        >
+            >
 
             <ImageView
                 android:id="@+id/longRecordImageView"
@@ -146,11 +160,10 @@
                 android:adjustViewBounds="true"
                 />
 
-    </android.support.v4.widget.NestedScrollView>
+        </android.support.v4.widget.NestedScrollView>
 
 
     </android.support.design.widget.CoordinatorLayout>
 
 </android.support.constraint.ConstraintLayout>
-
 

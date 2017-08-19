@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,8 @@ public class ActiveModeActivity extends AppCompatActivity {
     private BluetoothAdapter mBluetoothAdapter = null;
     private BluetoothSwitchService bluetoothSwitch = null;
 
+
+
     public boolean checkFlag = true;
 
 
@@ -45,6 +48,7 @@ public class ActiveModeActivity extends AppCompatActivity {
     TextView yaywayLogoTextView;
     TextView wayTextView;
     CollapsingToolbarLayout collapsingToolbar;
+    Button button;
 
     private void initBluetooth() {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -150,12 +154,11 @@ public class ActiveModeActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            Log.d("ddddd",action);
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
 
                 BluetoothDevice bluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if(bluetoothDevice.getAddress().equals("98:D3:32:20:C3:36")) {
-                    Log.d("dddd22222d","zzz");
+
                     bluetoothSwitch.connect(bluetoothDevice,true);
                     mBluetoothAdapter.cancelDiscovery();
 
@@ -188,6 +191,7 @@ public class ActiveModeActivity extends AppCompatActivity {
 
                     constraintLayout.setVisibility(View.VISIBLE);
                     checkFlag = false;
+                    button.setVisibility(View.VISIBLE);
                     //constraintLayout.setVisibility(View.VISIBLE);
 
                    // Log.d("으으어어","응어어어##");
@@ -197,6 +201,7 @@ public class ActiveModeActivity extends AppCompatActivity {
                 {
                     constraintLayout.setVisibility(View.INVISIBLE);
                     checkFlag = true;
+                    button.setVisibility(View.GONE);
                    // constraintLayout.setVisibility(View.GONE);
                  //   Log.d("으으어어","응어어어1");
                 }
@@ -216,8 +221,7 @@ public class ActiveModeActivity extends AppCompatActivity {
 
         modeBackImgeView = (ImageView) findViewById(R.id.imageView01);
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout01);
-
-
+        button= (Button)findViewById(R.id.goPhylayoutHiddenButton);
 
         initBluetooth();
     }
@@ -243,5 +247,9 @@ public class ActiveModeActivity extends AppCompatActivity {
             startActivity(new Intent(this, ActiveBeforeRideModeActivity.class));
             overridePendingTransition(0,0);
         }
+    }
+
+    public void ic_hidden_list_button(View view) {
+
     }
 }
