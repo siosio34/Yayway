@@ -15,6 +15,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.commit451.gitbal.Gimbal;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -40,6 +43,7 @@ public class PhysicsLayout extends AppCompatActivity {
     CircleImageView circleImageView3;
     CircleImageView circleImageView4;
     CircleImageView circleImageView5;
+    public static File lastPictureImage;
 
     private final SensorEventListener sensorEventListener = new SensorEventListener() {
         @Override
@@ -129,6 +133,8 @@ public class PhysicsLayout extends AppCompatActivity {
         circleImageView3.setImageResource(R.drawable.ic_ball2);
         circleImageView4.setImageResource(R.drawable.ic_ball3_pic);
         circleImageView5.setImageResource(R.drawable.ic_ball4);
+
+        //ic_ball4가 6콤보
     }
 
     public void ic_ball4_click(View view) {
@@ -136,7 +142,8 @@ public class PhysicsLayout extends AppCompatActivity {
         circleImageView2.setImageResource(R.drawable.ic_ball2);
         circleImageView3.setImageResource(R.drawable.ic_ball2);
         circleImageView4.setImageResource(R.drawable.ic_ball3);
-        circleImageView5.setImageResource(R.drawable.ic_ball4_pic);
+
+        Picasso.with(getApplicationContext()).load(lastPictureImage).into(circleImageView5);
     }
 
 

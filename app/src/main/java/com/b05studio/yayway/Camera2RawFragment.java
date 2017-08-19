@@ -71,6 +71,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import android.support.v13.app.FragmentCompat;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -218,6 +220,7 @@ public class Camera2RawFragment extends Fragment
         @Override
         public void onSurfaceTextureSizeChanged(SurfaceTexture texture, int width, int height) {
             configureTransform(width, height);
+
         }
 
         @Override
@@ -545,6 +548,8 @@ public class Camera2RawFragment extends Fragment
             ImageSaver.ImageSaverBuilder jpegBuilder;
             ImageSaver.ImageSaverBuilder rawBuilder;
             StringBuilder sb = new StringBuilder();
+
+
 
             // Look up the ImageSaverBuilder for this request and update it with the CaptureResult
             synchronized (mCameraStateLock) {
@@ -1369,6 +1374,7 @@ public class Camera2RawFragment extends Fragment
         public void run() {
             boolean success = false;
             int format = mImage.getFormat();
+
             switch (format) {
                 case ImageFormat.JPEG: {
                     ByteBuffer buffer = mImage.getPlanes()[0].getBuffer();
@@ -1376,9 +1382,11 @@ public class Camera2RawFragment extends Fragment
                     buffer.get(bytes);
                     FileOutputStream output = null;
                     try {
+
                         output = new FileOutputStream(mFile);
                         output.write(bytes);
                         success = true;
+                        PhysicsLayout.lastPictureImage = mFile;
                     } catch (IOException e) {
                         e.printStackTrace();
                     } finally {
@@ -1476,6 +1484,7 @@ public class Camera2RawFragment extends Fragment
                 if (!isComplete()) {
                     return null;
                 }
+
                 return new ImageSaver(mImage, mFile, mCaptureResult, mCharacteristics, mContext,
                         mReader);
             }
@@ -1485,6 +1494,7 @@ public class Camera2RawFragment extends Fragment
             }
 
             private boolean isComplete() {
+
                 return mImage != null && mFile != null && mCaptureResult != null
                         && mCharacteristics != null;
             }
@@ -1513,6 +1523,7 @@ public class Camera2RawFragment extends Fragment
      * finished once the dialog has been acknowledged by the user.
      */
     public static class ErrorDialog extends DialogFragment {
+
 
         private String mErrorMessage;
 
