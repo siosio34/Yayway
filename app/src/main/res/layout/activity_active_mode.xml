@@ -83,6 +83,7 @@
 
             <TextView
                 fontPath="fonts/CircularStd-Black.otf"
+                android:id="@+id/makeYourTextView"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textSize="45sp"

@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         if(isFinishing())
             return ;
 
-        startActivity(new Intent(this,ActiveBeforeRideModeActivity.class));
+        startActivity(new Intent(this,ActiveModeActivity.class));
         overridePendingTransition(0,0);
         finish();
     }

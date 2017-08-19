@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.squareup.picasso.Picasso;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -38,12 +40,14 @@ public class ActiveModeActivity extends AppCompatActivity {
     private BluetoothSwitchService bluetoothSwitch = null;
 
     public boolean checkFlag = true;
+    int count = 0;
 
 
     ImageView modeBackImgeView;
     ImageView longImageView;
     TextView yaywayLogoTextView;
     TextView wayTextView;
+    TextView makeYourTextView;
     CollapsingToolbarLayout collapsingToolbar;
 
     private void initBluetooth() {
@@ -114,8 +118,12 @@ public class ActiveModeActivity extends AppCompatActivity {
                                 .load(R.drawable.ic_record_long).into(longImageView);
 
                         constraintLayout.setBackgroundResource(R.drawable.ic_constraint);
-                        yaywayLogoTextView.setText("active");
                         wayTextView.setPadding(0,0,0,0);
+
+                        YoYo.with(Techniques.DropOut).playOn(findViewById(R.id.makeYourTextView));
+                        YoYo.with(Techniques.DropOut).playOn(findViewById(R.id.wayTextView));
+                        YoYo.with(Techniques.DropOut).playOn(findViewById(R.id.logoTextview));
+                        yaywayLogoTextView.setText("active");
 
 
                     } else {
@@ -126,9 +134,14 @@ public class ActiveModeActivity extends AppCompatActivity {
                         window.setStatusBarColor(Color.parseColor("#3BC8E0"));
                         Picasso.with(getApplicationContext())
                                 .load(R.drawable.ic_record_long2).into(longImageView);
+
                         constraintLayout.setBackgroundResource(R.drawable.ic_rect);
-                        yaywayLogoTextView.setText("speedy");
                         wayTextView.setPadding(70,0,0,0);
+
+                        YoYo.with(Techniques.DropOut).playOn(findViewById(R.id.makeYourTextView));
+                        YoYo.with(Techniques.DropOut).playOn(findViewById(R.id.wayTextView));
+                        YoYo.with(Techniques.DropOut).playOn(findViewById(R.id.logoTextview));
+                        yaywayLogoTextView.setText("speedy");
 
                     }
                     break;
@@ -161,7 +174,7 @@ public class ActiveModeActivity extends AppCompatActivity {
 
                 }
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) { // 검색이 끝났을때!
-                Toast.makeText(getApplicationContext(), "기기 검색 완료.", Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(), "기기 검색 완료.", Toast.LENGTH_LONG).show();
             }
         }
     };
@@ -209,14 +222,24 @@ public class ActiveModeActivity extends AppCompatActivity {
         window.setStatusBarColor(Color.parseColor("#FA6B58"));
 
         longImageView = (ImageView) findViewById(R.id.longRecordImageView);
-
-        yaywayLogoTextView = (TextView) findViewById(R.id.logoTextview);
-        wayTextView = (TextView) findViewById(R.id.wayTextView);
         Picasso.with(this).load(R.drawable.ic_record_long).into(longImageView);
 
+        makeYourTextView = (TextView) findViewById(R.id.makeYourTextView);
+        yaywayLogoTextView = (TextView) findViewById(R.id.logoTextview);
+        wayTextView = (TextView) findViewById(R.id.wayTextView);
+
+       //wayTextView.setOnClickListener(new View.OnClickListener() {
+       //    @Override
+       //    public void onClick(View v) {
+       //        Log.d("클릭","됨");
+
+       //
+
+
+       //    }
+       //});
         modeBackImgeView = (ImageView) findViewById(R.id.imageView01);
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout01);
-
 
 
         initBluetooth();
@@ -242,6 +265,7 @@ public class ActiveModeActivity extends AppCompatActivity {
             overridePendingTransition(0,0);
             startActivity(new Intent(this, ActiveBeforeRideModeActivity.class));
             overridePendingTransition(0,0);
+            finish();
         }
     }
 }
