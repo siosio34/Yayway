@@ -51,8 +51,9 @@ public class ActiveYayActivity extends AppCompatActivity {
 
         //startActivity(new Intent(this,PhysicsLayout.class));
         overridePendingTransition(0,0);
-        dispatchTakePictureIntent();
-        finish();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.container, Camera2RawFragment.newInstance())
+                .commit();
         overridePendingTransition(0,0);
     }
 
@@ -60,28 +61,6 @@ public class ActiveYayActivity extends AppCompatActivity {
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
-
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            // TODO: 2017-08-19 여기 비트맵 이미지 가져다가 다른데써야도미
-            assert imageBitmap != null;
-            Log.d("ddddddd",imageBitmap.toString());
-
-        }
-    }
-
 
 
 }

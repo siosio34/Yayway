@@ -71,9 +71,10 @@ public class PhysicsLayout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: 2017-08-14 위에서 아래로 내려가는
+                overridePendingTransition(R.anim.activity_change,R.anim.activity_change);
                 startActivity(new Intent(PhysicsLayout.this, ActiveModeActivity.class));
                 finish();
-                overridePendingTransition(0,R.anim.activity_change);
+                overridePendingTransition(R.anim.activity_change,R.anim.activity_change);
             }
         });
 

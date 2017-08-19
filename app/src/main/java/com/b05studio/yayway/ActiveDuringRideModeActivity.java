@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
@@ -239,5 +240,13 @@ public class ActiveDuringRideModeActivity extends AppCompatActivity implements S
 
         }
 
+    }
+
+    public void ic_finish_button(View view) {
+
+        overridePendingTransition(0,0);
+        startActivity(new Intent(this,PhysicsLayout.class));
+        overridePendingTransition(0,0);
+        finish();
     }
 }

@@ -6,28 +6,27 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
-
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
-        android:largeHeap="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        <activity android:name=".ActiveModeActivity">
+        <activity android:name=".ActiveYayActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -37,8 +36,8 @@
         <activity android:name=".ActiveBeforeRideModeActivity" />
         <activity android:name=".SpeedRideModeActivity" />
         <activity android:name=".PhysicsLayout" />
-        <activity android:name=".CameraActivity"/>
-        <activity android:name=".ActiveYayActivity"/>
+        <activity android:name=".ActiveModeActivity" />
+        <activity android:name=".CameraActivity" />
     </application>
 
 </manifest>
