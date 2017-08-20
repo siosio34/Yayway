@@ -149,15 +149,16 @@
 
     </com.b05studio.yayway.PhysicsFlowLayout>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/exitDetailRecordButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/ic_exit"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
+        android:background="@null"
         />
 
     <ImageView

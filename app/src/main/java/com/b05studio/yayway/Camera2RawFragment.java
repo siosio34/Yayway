@@ -1086,9 +1086,10 @@ public class Camera2RawFragment extends Fragment
             }
 
 
-
             // Find the best preview size for these view dimensions and configured JPEG size.
-            Size previewSize = new Size(maxPreviewWidth,maxPreviewHeight);
+            Size previewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
+                    rotatedViewWidth, rotatedViewHeight, maxPreviewWidth, maxPreviewHeight,
+                    largestJpeg);
 
             if (swappedDimensions) {
                 mTextureView.setAspectRatio(

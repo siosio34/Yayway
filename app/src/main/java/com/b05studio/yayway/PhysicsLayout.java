@@ -9,12 +9,15 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.commit451.gitbal.Gimbal;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -69,16 +72,17 @@ public class PhysicsLayout extends AppCompatActivity {
         gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 
         ButterKnife.bind(this);
-
         ImageView imageView = (ImageView)findViewById(R.id.exitDetailRecordButton);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO: 2017-08-14 위에서 아래로 내려가는
-                overridePendingTransition(R.anim.activity_change,R.anim.activity_change);
-                startActivity(new Intent(PhysicsLayout.this, ActiveModeActivity.class));
+
+                Intent intent = new Intent(PhysicsLayout.this,ActiveModeActivity.class);
+                intent.putExtra("activityFlag",true);
+                startActivity(intent);
                 finish();
-                overridePendingTransition(R.anim.activity_change,R.anim.activity_change);
+                //overridePendingTransition(R.anim.slide_in_down, R.anim.hold);
             }
         });
 
@@ -143,7 +147,18 @@ public class PhysicsLayout extends AppCompatActivity {
         circleImageView3.setImageResource(R.drawable.ic_ball2);
         circleImageView4.setImageResource(R.drawable.ic_ball3);
 
-        Picasso.with(getApplicationContext()).load(lastPictureImage).into(circleImageView5);
+       // Toast.makeText(getApplicationContext() , lastPictureImage.toString(),Toast.LENGTH_LONG).show();
+        Picasso.with(getApplicationContext()).load(PhysicsLayout.lastPictureImage).into(circleImageView5, new Callback() {
+            @Override
+            public void onSuccess() {
+                Log.d("success","success");
+            }
+
+            @Override
+            public void onError() {
+                circleImageView4.setImageResource(R.drawable.ic_ball4_pic);
+            }
+        });
     }
 
 

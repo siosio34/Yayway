@@ -19,6 +19,7 @@ public class ActiveBeforeRideModeActivity extends AppCompatActivity {
     private int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_ride_mode);
         VideoView vidioview = (VideoView) findViewById(R.id.splashActiveBeforeVideoView);

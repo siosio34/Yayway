@@ -15,6 +15,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -31,6 +32,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ActiveModeActivity extends AppCompatActivity {
 
+
     private static final int REQUEST_CODE_LOC = 1009;
 
     private static final String TAG = "ActiveModeActivity";
@@ -41,7 +43,7 @@ public class ActiveModeActivity extends AppCompatActivity {
     private BluetoothSwitchService bluetoothSwitch = null;
 
 
-
+    public boolean downFlag = false;
     public boolean checkFlag = true;
     int count = 0;
 
@@ -53,6 +55,7 @@ public class ActiveModeActivity extends AppCompatActivity {
     TextView makeYourTextView;
     CollapsingToolbarLayout collapsingToolbar;
     Button button;
+    Button button2;
 
     private void initBluetooth() {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -71,12 +74,17 @@ public class ActiveModeActivity extends AppCompatActivity {
             bluetoothSwitch = new BluetoothSwitchService(this, mHandHandler);
         }
 
-        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-        this.registerReceiver(bloothReceiver, filter);
-        filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-        this.registerReceiver(bloothReceiver, filter);
+       // IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+       // this.registerReceiver(bloothReceiver, filter);
+       // filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+       // this.registerReceiver(bloothReceiver, filter);
 
-        mBluetoothAdapter.startDiscovery();
+       // bluetoothSwitch.connect(bluetoothDevice,true);
+        BluetoothDevice bluetoothDevice = mBluetoothAdapter.getRemoteDevice("98:D3:32:30:C8:1B");
+        bluetoothSwitch.connect(bluetoothDevice,true);
+
+
+      //  mBluetoothAdapter.startDiscovery();
 
     }
 
@@ -170,7 +178,8 @@ public class ActiveModeActivity extends AppCompatActivity {
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
 
                 BluetoothDevice bluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                if(bluetoothDevice.getAddress().equals("98:D3:32:20:C3:36")) {
+                Log.d("ddddd",bluetoothDevice.getName());
+                if(bluetoothDevice.getName().contains("NOWNIZ")) {
 
                     bluetoothSwitch.connect(bluetoothDevice,true);
                     mBluetoothAdapter.cancelDiscovery();
@@ -186,8 +195,14 @@ public class ActiveModeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        boolean flag = getIntent().getBooleanExtra("activityFlag",false);
+        if(flag) {
+            //overridePendingTransition( R.anim.slide_in_down,R.anim.slide_out_down);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_mode);
+
+
 
         appBarLayout = (AppBarLayout) findViewById(R.id.activeModeTabbar);
         constraintLayout = (ConstraintLayout) findViewById(R.id.activeModeTabLayout);
@@ -201,10 +216,12 @@ public class ActiveModeActivity extends AppCompatActivity {
 
                 if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0)
                 {
-
                     constraintLayout.setVisibility(View.VISIBLE);
                     checkFlag = false;
                     button.setVisibility(View.VISIBLE);
+                   // downFlag = true;
+
+
                     //constraintLayout.setVisibility(View.VISIBLE);
                 }
                 else
@@ -212,6 +229,31 @@ public class ActiveModeActivity extends AppCompatActivity {
                     constraintLayout.setVisibility(View.INVISIBLE);
                     checkFlag = true;
                     button.setVisibility(View.GONE);
+                    //button.setOnTouchListener(new View.OnTouchListener() {
+                    //    @Override
+                    //    public boolean onTouch(View v, MotionEvent event) {
+                    //        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //
+                    //            return true;
+                    //        }
+                    //        return false;
+                    //    }
+                    //});
+
+                 // if(downFlag) {
+                 //
+                 //
+                 //
+                 //
+                 //
+                 //
+                 //
+                 //
+                 //
+                 //
+                 //     downFlag = false;
+                 // }
+
                    // constraintLayout.setVisibility(View.GONE);
                  //   Log.d("으으어어","응어어어1");
                 }
@@ -230,20 +272,22 @@ public class ActiveModeActivity extends AppCompatActivity {
         yaywayLogoTextView = (TextView) findViewById(R.id.logoTextview);
         wayTextView = (TextView) findViewById(R.id.wayTextView);
 
-       //wayTextView.setOnClickListener(new View.OnClickListener() {
-       //    @Override
-       //    public void onClick(View v) {
-       //        Log.d("클릭","됨");
-
-       //
-
-
-       //    }
-       //});
         modeBackImgeView = (ImageView) findViewById(R.id.imageView01);
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout01);
         button= (Button)findViewById(R.id.goPhylayoutHiddenButton);
-
+        button2= (Button)findViewById(R.id.goBeforeRidingHiddebutton);
+        button2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if(checkFlag) {
+                        startActivity(new Intent(ActiveModeActivity.this, ActiveBeforeRideModeActivity.class));
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
         initBluetooth();
     }
@@ -263,17 +307,58 @@ public class ActiveModeActivity extends AppCompatActivity {
     }
 
 
-    public void ic_hidden_button_click(View view) {
-        if(checkFlag) {
-            overridePendingTransition(0,0);
-            startActivity(new Intent(this, ActiveBeforeRideModeActivity.class));
-            overridePendingTransition(0,0);
-            finish();
-        }
-    }
+  // public void ic_hidden_button_click(View view) {
+  //     if(checkFlag) {
+  //         overridePendingTransition(0,0);
+  //         startActivity(new Intent(this, ActiveBeforeRideModeActivity.class));
+  //         overridePendingTransition(0,0);
+  //         finish();
+  //     }
+  // }
 
     public void ic_hidden_list_button(View view) {
-        Log.d("버튼","눌림");
+        overridePendingTransition(0,0);
         startActivity(new Intent(this,PhysicsLayout.class));
+        overridePendingTransition(0,0);
+    }
+
+    public void temp(View view) {
+        checkMode = !checkMode;
+        if(checkMode) {
+            modeBackImgeView.setImageResource(R.drawable.back);
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(Color.parseColor("#FA6B58"));
+            Picasso.with(getApplicationContext())
+                    .load(R.drawable.ic_record_long).into(longImageView);
+
+            constraintLayout.setBackgroundResource(R.drawable.ic_constraint);
+            wayTextView.setPadding(0,0,0,0);
+
+            YoYo.with(Techniques.FadeIn).duration(500).playOn(findViewById(R.id.makeYourTextView));
+            YoYo.with(Techniques.FadeIn).duration(500).playOn(findViewById(R.id.wayTextView));
+            YoYo.with(Techniques.FadeIn).duration(500).playOn(findViewById(R.id.logoTextview));
+            yaywayLogoTextView.setText("active");
+
+
+        } else {
+            modeBackImgeView.setImageResource(R.drawable.back_speedy);
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(Color.parseColor("#3BC8E0"));
+            Picasso.with(getApplicationContext())
+                    .load(R.drawable.ic_record_long2).into(longImageView);
+
+            constraintLayout.setBackgroundResource(R.drawable.ic_rect);
+            wayTextView.setPadding(70,0,0,0);
+
+            YoYo.with(Techniques.FadeIn).duration(500).playOn(findViewById(R.id.makeYourTextView));
+            YoYo.with(Techniques.FadeIn).duration(500).playOn(findViewById(R.id.wayTextView));
+            YoYo.with(Techniques.FadeIn).duration(500).playOn(findViewById(R.id.logoTextview));
+            yaywayLogoTextView.setText("speedy");
+
+        }
     }
 }

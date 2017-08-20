@@ -37,7 +37,7 @@ public class ActiveDuringRideModeActivity extends AppCompatActivity implements S
 
     Timer timer;
     Timer timer2;
-    private static final int SHAKE_THRESHOLD = 800;
+    private static final int SHAKE_THRESHOLD = 400;
     private static final int DATA_X = SensorManager.DATA_X;
     private static final int DATA_Y = SensorManager.DATA_Y;
     private static final int DATA_Z = SensorManager.DATA_Z;
